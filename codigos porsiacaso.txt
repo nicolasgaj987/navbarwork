@@ -1,0 +1,216 @@
+<div class="col-12">
+                <select class="select form-control-lg">
+                  <option value="1" disabled>Nacionalidad</option>
+                  <option value="2">Chileno</option>
+                  <option value="3">Extranjero</option>
+                </select>
+                <label class="form-label select-label">Nacionalidad</label>
+              </div>
+                    <label class="form-label" for="Telefono">Telefono</label>
+                    <input type="tel" name="Telefono" id="Telefono" class="form-control form-control-lg frm1" />
+
+/////////////////////////////////////
+<body>
+	<main>
+		<form action="" class="formulario" id="formulario">
+			<!-- Grupo: Usuario -->
+			<div class="formulario__grupo" id="grupo__usuario">
+				<label for="usuario" class="formulario__label">Usuario</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="john123">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+			</div>
+
+			<!-- Grupo: Nombre -->
+			<div class="formulario__grupo" id="grupo__nombre">
+				<label for="nombre" class="formulario__label">Nombre</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+			</div>
+
+			<!-- Grupo: Contraseña -->
+			<div class="formulario__grupo" id="grupo__password">
+				<label for="password" class="formulario__label">Contraseña</label>
+				<div class="formulario__grupo-input">
+					<input type="password" class="formulario__input" name="password" id="password">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+			</div>
+
+			<!-- Grupo: Contraseña 2 -->
+			<div class="formulario__grupo" id="grupo__password2">
+				<label for="password2" class="formulario__label">Repetir Contraseña</label>
+				<div class="formulario__grupo-input">
+					<input type="password" class="formulario__input" name="password2" id="password2">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+			</div>
+
+			<!-- Grupo: Correo Electronico -->
+			<div class="formulario__grupo" id="grupo__correo">
+				<label for="correo" class="formulario__label">Correo Electrónico</label>
+				<div class="formulario__grupo-input">
+					<input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+			</div>
+
+			<!-- Grupo: Teléfono -->
+			<div class="formulario__grupo" id="grupo__telefono">
+				<label for="telefono" class="formulario__label">Teléfono</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="4491234567">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+			</div>
+
+			<!-- Grupo: Terminos y Condiciones -->
+			<div class="formulario__grupo" id="grupo__terminos">
+				<label class="formulario__label">
+					<input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
+					Acepto los Terminos y Condiciones
+				</label>
+			</div>
+
+			<div class="formulario__mensaje" id="formulario__mensaje">
+				<p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+			</div>
+
+			<div class="formulario__grupo formulario__grupo-btn-enviar">
+				<button type="submit" class="formulario__btn">Enviar</button>
+				<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+			</div>
+		</form>
+	</main>
+
+	<script src="js/formulario.js"></script>
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+</body>
+/////////////////////////////
+const expresiones ={
+    usuarios: /^[a-zA-Z0-9\_\-]{4,16}$/, //Letras, numeros, guion y guion_bajo.
+    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, //Letras, espacios, pueden llevar acentos.
+    password: /^.{4,12}$/,  //4 a 12 numeros
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    telefono: /^\d{7,14}$/ //7 a 14 numeros
+}
+const formulario = document.getElementById("formulario");
+const inputs = document.querySelectorAll("#formulario input");
+const validarformulario=(e) =>{
+    switch (e.target.name) {
+		case "usuario":
+			validarCampo(expresiones.usuario, e.target, 'usuario');
+		break;
+		case "nombre":
+			validarCampo(expresiones.nombre, e.target, 'nombre');
+		break;
+		case "password":
+			validarCampo(expresiones.password, e.target, 'password');
+			validarPassword2();
+		break;
+		case "password2":
+			validarPassword2();
+		break;
+		case "correo":
+			validarCampo(expresiones.correo, e.target, 'correo');
+		break;
+		case "telefono":
+			validarCampo(expresiones.telefono, e.target, 'telefono');
+		break;
+	}
+}
+const validarCampo = (expresion, input, campo) => {
+	if(expresion.test(input.value)){
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+		campos[campo] = true;
+	} else {
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+		campos[campo] = false;
+	}
+}
+inputs.forEach((inputs) => {
+    input.addEventListener('keyup', validarformulario);
+    input.addEventListener('blur', validarformulario);
+});
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #a18cd1;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0) 100%
+    );
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+#fondo {
+	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeliVI2Q-JLcHplC7JWjuh-dzcsIOlO-QTlA&usqp=CAU"), url("https://capacitacion.uc.cl/images/noticias/trabajos-mas-demandados.jpg"), url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMGE2q3Sg-oC9_5fHCb3UQ5VTCwQQbZc0GVw&usqp=CAU");
+	background-size: cover;
+	background-position: center center;
+	transition: background-image 1s ease-in-out;
+	animation: cambiar-imagenes 15s ease-in-out infinite;
+}
+@keyframes cambiar-imagenes {
+	0% {
+		background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeliVI2Q-JLcHplC7JWjuh-dzcsIOlO-QTlA&usqp=CAU"), url("https://capacitacion.uc.cl/images/noticias/trabajos-mas-demandados.jpg"), url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMGE2q3Sg-oC9_5fHCb3UQ5VTCwQQbZc0GVw&usqp=CAU");
+	}
+	33.33% {
+		background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeliVI2Q-JLcHplC7JWjuh-dzcsIOlO-QTlA&usqp=CAU"), url("https://capacitacion.uc.cl/images/noticias/trabajos-mas-demandados.jpg"), url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMGE2q3Sg-oC9_5fHCb3UQ5VTCwQQbZc0GVw&usqp=CAU");
+	}
+	66.66% {
+		background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeliVI2Q-JLcHplC7JWjuh-dzcsIOlO-QTlA&usqp=CAU"), url("https://capacitacion.uc.cl/images/noticias/trabajos-mas-demandados.jpg"), url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMGE2q3Sg-oC9_5fHCb3UQ5VTCwQQbZc0GVw&usqp=CAU");
+	}
+	100% {
+		background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeliVI2Q-JLcHplC7JWjuh-dzcsIOlO-QTlA&usqp=CAU"), url("https://capacitacion.uc.cl/images/noticias/trabajos-mas-demandados.jpg"), url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMGE2q3Sg-oC9_5fHCb3UQ5VTCwQQbZc0GVw&usqp=CAU");
+	}
+}
+
+
+si o si
+/*
+// ----------------------------------------------------------------
+$conexion = new mysqli("127.0.0.1","root","","testeo");
+if ($conexion->connect_errno) {
+    die("Connection failed: ");
+}
+$conexion->set_charset("utf8");
+// ----------------------------------------------------------------
+if (!empty($_POST["btnIngresar"])){
+    if(!empty($_POST["nombreUsuario"] and empty($_POST["passwordUsuario"]))){
+        echo '<div class = "alert alert-danger">Los Campos estan vacios</div>';
+    else{
+        //Datos
+        $usuario=$_POST["nombreUsuario"];
+        $password=$_POST["passwordUsuario"];
+        $sql=$conexion->query("SELECT * FROM usuario WHERE usuario = '$usuario' and password = '$password'");
+        //Consulta a la BD
+        if($datos = $sql->fetch-object()){
+            header("perfil.php");
+        }else {
+            header("login.html?e=1")
+        }
+    }
+    }
+}*/

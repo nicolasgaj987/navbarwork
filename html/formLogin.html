@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="bf-info d-flex justify-content-center align-items-center vh-100">
+        <div class="bg-dark p-5 rounded-4">
+            <form class="d-flex row g-4 needs-validation" method="post" action="../php/controladorLoginUsuario.php" novalidate>
+                <div>
+                    <label for="nombreUsuario" class="form-label">Ingrese correo</label>
+                    <input type="email" class="form-control" id="Nombre" name="nombreUsuario" required>
+                    <div class="invalid-feedback">
+                        Introduzca un correo valido.
+                    </div>
+                </div>
+                <div>
+                    <label for="passwordUsuario" class="form-label">Ingrese contraseña</label>
+                    <input type="password" class="form-control" id="validationCustom02" name="passwordUsuario" required>
+                    <div class="invalid-feedback">
+                        Introduzca contraseña valida.
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck">
+                        <label class="form-check-label" for="invalidCheck"> recuerdame </label>
+                    </div>
+                    <div class="col">
+                </div>
+                <div class="col">
+                        <a href="./registroprederminado.php">registrarse</a>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Ingresar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+-Crear votos para cada trabajo (sql)mas popular y salga en el inicio de la pagina
+-Que cada archivo cambiarlo a php
+-Crear los 2 superusuarios
+-crear 1 php de los 3 para cada tipo de usuario (switch)
+-generar contraseña de superUsuario
